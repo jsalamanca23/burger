@@ -16,6 +16,8 @@ router.get("/", function(req, res) {
   });
 });
 
+
+
 router.post("/api/burgers", function(req, res) {
   console.log(req.body);
     burger.create([
@@ -28,6 +30,12 @@ router.post("/api/burgers", function(req, res) {
     res.json({ id: result.insertId });
   });
 });
+router.delete("/api/burgers/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+    burger.delete(condition, function(end){
+        res.end()
+    })
+})
 
 router.put("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
